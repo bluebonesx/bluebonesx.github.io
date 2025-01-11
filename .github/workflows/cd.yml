@@ -1,39 +1,45 @@
-name: cd
+name: deploy to pages
 on:
   push:
     branches: [main]
   workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Node
+      - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: 1.1.20
-        # uses: actions/setup-node@v4
-        # with:
-        #     node-version: 18
-        #     cache: npm
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
       - name: Install dependencies
         run: bun i
       - name: Build
         run: bun run build
-      - name: Deploy
-        uses: easingthemes/ssh-deploy@v5.0.3
+      - name: Upload
+        uses: actions/upload-pages-artifact@v3
         with:
-          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
-          REMOTE_USER: ${{ secrets.SERVER_USERNAME }}
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SOURCE: '.output/'
-          TARGET: ${{ secrets.WORKSPACE }}
-          ARGS: '-avz --delete'
-          SCRIPT_AFTER: |
-            cd ${{ secrets.WORKSPACE }}
-            node server/index.mjs
-
+          path: dist
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
   del_runs:
     runs-on: ubuntu-latest
     permissions:

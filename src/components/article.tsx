@@ -1,3 +1,4 @@
+import { A } from '@solidjs/router';
 import { For, JSX, ParentProps, mergeProps } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
 
@@ -6,7 +7,7 @@ export function H(p: ParentProps<{ level: 1 | 2 | 3 }>) {
     <Dynamic component={'h' + p.level} id={'' + p.children}>
       <a
         href={'#' + p.children}
-        class='mr-2 opacity-20 hover:opacity-60 font-bold no-underline'
+        class="mr-2 opacity-20 hover:opacity-60 font-bold no-underline"
       >
         #
       </a>
@@ -39,20 +40,19 @@ export function Link(_p: {
   path?: string;
   children?: JSX.Element;
 }) {
-  const p = mergeProps({ path: '/404' }, _p);
+  const p = mergeProps({ path: '404' }, _p);
   return (
-    <a
+    <A
       class={p.class}
       href={p.path}
-      target={/^.?\//.test(p.path) ? '_self' : '_blank'}
-    >
-      {p.children}
-    </a>
+      target={p.path.startsWith('http') ? '_blank' : '_self'}
+      children={p.children}
+    />
   );
 }
 export function Article(p: ParentProps) {
   return (
-    <article class='prose prose-sm md:prose-base max-w-none my-12 mx-5 md:mx-20'>
+    <article class="prose prose-sm md:prose-base max-w-none my-12 mx-5 md:mx-20">
       {p.children}
     </article>
   );

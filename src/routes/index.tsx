@@ -1,8 +1,6 @@
 import { mdiHeart, mdiQqchat } from '@mdi/js';
-import { A } from '@solidjs/router';
-import { For } from 'solid-js';
-import { Block, Actions, T, P } from '~/components/block';
-import { nav } from '~/ts/const';
+import { Actions, Block, P, T } from '~/components/block';
+import { Nav } from '~/ts/enum';
 
 export default function Home() {
   return (
@@ -12,7 +10,7 @@ export default function Home() {
           <T>
             脑科学的 <br />
             <span
-              class='bg-clip-text [-webkit-text-fill-color:transparent]'
+              class="bg-clip-text [-webkit-text-fill-color:transparent]"
               style={{
                 'background-image':
                   'linear-gradient(160deg,oklch(var(--p)),currentColor,oklch(var(--a)))',
@@ -29,17 +27,13 @@ export default function Home() {
           </P>
           <Actions
             items={[
-              { children: '相关产品', path: '/product' },
-              {
-                children: '加入社区群',
-                icon: mdiQqchat,
-                path: 'https://qm.qq.com/q/214gmxUVKw',
-              },
+              { ...Nav.Product, text: '系列产品' },
+              { ...Nav['ContactUs:QQ'], text: '加入社区群' },
             ]}
           ></Actions>
-          <br class='h-8'></br>
+          <br class="h-8"></br>
         </Block>
-        <Block class='bg-primary text-primary-content'>
+        <Block class="bg-primary text-primary-content">
           <T>从 idea 到 paper 有多长</T>
           <P>
             收集文献、实验设计、数据收集、数据分析、制作图表、文字撰写、内容排版...
@@ -55,7 +49,7 @@ export default function Home() {
             比起那些硬核且专业的软件，我们的优势是简单且高效。
           </P>
         </Block>
-        <Block class='bg-secondary text-secondary-content'>
+        <Block class="bg-secondary text-secondary-content">
           <T>开放的产品生态</T>
           <P>
             蓝骨头是非营利性组织，我们所作的一切是为了学科发展，而不是利润。
@@ -72,44 +66,9 @@ export default function Home() {
             作为一个年轻的组织，还需要得到各方的支持，
             <b>你愿意支持我们吗？</b>
           </P>
-          <Actions
-            items={[
-              { text: '关于蓝骨头', path: '/about' },
-              {
-                text: '向蓝骨头捐助',
-                path: '/donate',
-                icon: mdiHeart,
-              },
-            ]}
-          ></Actions>
+          <Actions items={[Nav['KnowUs:About'], Nav['KnowUs:Donate']]} />
         </Block>
       </div>
-      <footer class='flex-1 footer footer bg-neutral text-neutral-content p-10'>
-        <aside>
-          这里放个svg
-          <p>
-            ©{new Date().getFullYear()}
-            <A href='/about'> Bluebones Team</A>
-          </p>
-          <a href='http://beian.miit.gov.cn/' target='_blank'>
-            赣ICP备2024021771号
-          </a>
-        </aside>
-        <For each={nav}>
-          {(e) => (
-            <nav>
-              <h6 class='footer-title'>{e.text}</h6>
-              <For each={e.items}>
-                {(e) => (
-                  <A class='link link-hover' href={e.path}>
-                    {e.text}
-                  </A>
-                )}
-              </For>
-            </nav>
-          )}
-        </For>
-      </footer>
     </>
   );
 }

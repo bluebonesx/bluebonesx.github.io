@@ -1,13 +1,15 @@
 import { mdiQqchat } from '@mdi/js';
+import { A } from '@solidjs/router';
 import { Actions, Block, P, T } from '~/components/block';
-import Btn from '~/components/btn';
-import Table from '~/components/table';
+import { Btn } from '~/components/button';
+import { Table } from '~/components/table';
+import { Nav } from '~/ts/enum';
 
 export default function Donate() {
   let modalRef!: HTMLDialogElement;
   return (
     <div>
-      <Block class='2xl:mx-60'>
+      <Block class="2xl:mx-60">
         <T>加入我们</T>
         <P>
           蓝骨头还处于初期阶段，有限的成员数限制着产品开发速度，我们需要有共同理念的伙伴加入。
@@ -19,42 +21,29 @@ export default function Donate() {
         </P>
         <P>
           我们的团队成员基本都是学生，均以兼职形式进行无偿工作。
-          <Btn
-            class='btn-sm btn-outline'
-            onClick={(e) => {
-              modalRef.showModal();
-            }}
-          >
+          <Btn class="btn-sm btn-outline" onClick={() => modalRef.showModal()}>
             了解工作内容
           </Btn>
           <br />
           通过这份工作，您可以：
           <br />
-          掌握未来产品的话语权、对知识共享活动进行选题、获得行业前沿的互联网产品开发经验。
+          决定未来产品的方向、对知识分享活动进行选题、获得行业前沿的互联网产品开发经验。
         </P>
         <P>目前您可以通过以下方式联系我们：</P>
-        <Actions
-          items={[
-            {
-              children: 'QQ',
-              icon: mdiQqchat,
-              path: 'https://qm.qq.com/q/214gmxUVKw',
-            },
-          ]}
-        ></Actions>
-        <dialog ref={modalRef} class='modal modal-bottom sm:modal-middle'>
-          <div class='modal-box'>
-            <form method='dialog'>
-              <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>
+        <Actions items={[Nav['ContactUs:QQ']]}></Actions>
+        <dialog ref={modalRef} class="modal modal-bottom sm:modal-middle">
+          <div class="modal-box">
+            <form method="dialog">
+              <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                 ✕
               </button>
             </form>
-            <h3 class='text-lg font-bold'>工作内容</h3>
-            <div class='py-4'>
+            <h3 class="text-lg font-bold">工作内容</h3>
+            <div class="py-4">
               我们的主要工作是产品开发，大致包含：
               <br />
               <Table
-                class='table-zebra break-keep'
+                class="table-zebra break-keep"
                 items={[
                   {
                     Job: '产品',
@@ -62,30 +51,25 @@ export default function Donate() {
                     Tech: '',
                   },
                   {
-                    Job: '前端',
-                    Desc: '开发网页、小程序、WPS加载项',
-                    Tech: 'Vue3, Solid, TypeScript',
-                  },
-                  {
-                    Job: '后端',
-                    Desc: '开发后台，程序架构',
-                    Tech: 'Bun, Koa, Nitro',
+                    Job: '全栈',
+                    Desc: '独立完成一个产品的开发',
+                    Tech: 'Solid, TypeScript, Bun',
                   },
                   {
                     Job: '推广',
                     Desc: '让更多人知道我们',
                   },
+                  {
+                    Job: '知识分享',
+                    Desc: '撰写文章，用最简单的语言描述最专业的知识',
+                  },
                 ]}
               ></Table>
               <br />
               同时，也欢迎您加入我们的
-              <a
-                class='link'
-                href='https://qm.qq.com/q/214gmxUVKw'
-                target='_blank'
-              >
+              <A class="link" href={Nav['ContactUs:QQ'].path} target="_blank">
                 社区群
-              </a>
+              </A>
               。
             </div>
           </div>

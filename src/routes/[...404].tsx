@@ -1,10 +1,11 @@
 import { A } from '@solidjs/router';
 import { For } from 'solid-js';
+import { Nav } from '~/ts/enum';
 
 function Guide(p: { text: string; path: string; desc: string }) {
   return (
-    <li class='my-2'>
-      <A class='btn btn-lg px-4 mr-2 h-auto min-h-10' href={p.path}>
+    <li class="my-2">
+      <A class="btn btn-lg px-4 mr-2 h-auto min-h-10" href={p.path}>
         {p.text}
       </A>
       {p.desc}
@@ -13,27 +14,27 @@ function Guide(p: { text: string; path: string; desc: string }) {
 }
 export default function NotFound() {
   return (
-    <div class='hero h-full'>
-      <div class='hero-content flex-col items-start'>
-        <div class='max-w-md'>
-          <h1 class='text-5xl font-bold'>Σ(っ °Д °;)っ: 404</h1>
-          <p class='py-6'>
+    <div class="hero h-full">
+      <div class="hero-content flex-col items-start">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">Σ(っ °Д °;)っ: 404</h1>
+          <p class="py-6">
             这个页面还没写好...
             <br />
-            不过，您可以通过{' '}
-            <a href='https://qm.qq.com/q/214gmxUVKw' class='link'>
+            不过，您可以通过
+            <A href={Nav['ContactUs:QQ'].path} class="link">
               加入 Bluebones 社区群
-            </a>{' '}
-            在线督工
+            </A>
+            跟踪最新动态
           </p>
           <a
-            class='btn btn-sm btn-outline'
+            class="btn btn-sm btn-outline"
             onClick={() => window.history.back()}
           >
             上一页
           </a>
         </div>
-        <div class='divider divider-neutral'></div>
+        <div class="divider divider-neutral"></div>
         <ol>
           <For
             each={[

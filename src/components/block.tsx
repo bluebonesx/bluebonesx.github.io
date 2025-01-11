@@ -1,20 +1,20 @@
 import { For, ParentProps } from 'solid-js';
-import Btn from './btn';
+import { Btn } from './button';
 import { mergeStyleProps } from '~/ts/util';
 
 export function T(p: ParentProps) {
   return (
-    <h1 class='text-5xl text-center md:text-left font-bold leading-tight pb-6'>
+    <h1 class="text-5xl text-center md:text-left font-bold leading-tight pb-6">
       {p.children}
     </h1>
   );
 }
 export function P(p: ParentProps) {
-  return <div class='pb-6'>{p.children}</div>;
+  return <div class="pb-6">{p.children}</div>;
 }
 export function Actions(p: { items: Props<typeof Btn>[] }) {
   return (
-    <div class='flex justify-center md:justify-start'>
+    <div class="flex justify-center md:justify-start">
       <For each={p.items}>
         {(e) => (
           <Btn
@@ -36,8 +36,7 @@ export function Block(p: ParentProps<{ class?: string }>) {
         'flex flex-col justify-center',
         p.class ?? '',
       ].join(' ')}
-    >
-      {p.children}
-    </div>
+      children={p.children}
+    />
   );
 }

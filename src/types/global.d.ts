@@ -1,4 +1,3 @@
-/// <reference types="@solidjs/start/env" />
 import { Component, JSX } from 'solid-js';
 
 declare global {
@@ -9,11 +8,13 @@ declare global {
   type NormalizedStyleProps = { class?: string; style?: string };
 
   // util
-  type Props<T extends Component<any>> = Parameters<T>[0];
+  type Props<T> = T extends Component<infer P> ? P : never;
   type NonReadonly<T extends {}> = {
     -readonly [P in keyof T]: T[P];
   };
   type DeepNonReadonly<T extends {}> = {
     -readonly [P in keyof T]: T[P] extends {} ? DeepNonReadonly<T[P]> : T[P];
   };
+  type LooseObject = { [key: string]: any };
+  type ObjectIterator<T, R> = (v: T[keyof T], k: string, o: T) => R;
 }

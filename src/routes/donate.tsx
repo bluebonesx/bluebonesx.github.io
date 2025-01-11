@@ -1,12 +1,13 @@
 import { mdiWechat } from '@mdi/js';
 import img from '~/assets/wx_reward.png';
 import { Actions, Block, P, T } from '~/components/block';
+import { Nav } from '~/ts/enum';
 
 export default function Donate() {
   let modalRef!: HTMLDialogElement;
   return (
     <div>
-      <Block class='2xl:mx-60'>
+      <Block class="2xl:mx-60">
         <T>向我们捐助</T>
         <P>
           蓝骨头正在推动脑科学科研工作流的改革，以此促进脑科学的发展。
@@ -25,28 +26,23 @@ export default function Donate() {
         <Actions
           items={[
             {
-              children: '微信',
+              text: '微信',
               icon: mdiWechat,
-              onClick: (e) => {
-                modalRef.showModal();
-              },
+              onClick: () => modalRef.showModal(),
             },
-            {
-              children: '爱发电',
-              path: 'https://afdian.com/a/bluebones',
-            },
+            Nav['ContactUs:AFDIAN'],
           ]}
         ></Actions>
-        <dialog ref={modalRef} class='modal modal-bottom sm:modal-middle'>
-          <div class='modal-box'>
-            <form method='dialog'>
-              <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>
+        <dialog ref={modalRef} class="modal modal-bottom sm:modal-middle">
+          <div class="modal-box">
+            <form method="dialog">
+              <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                 ✕
               </button>
             </form>
-            <h3 class='text-lg font-bold'>感谢支持</h3>
-            <p class='py-4'>
-              <img src={img} alt='微信赞助码' />
+            <h3 class="text-lg font-bold">感谢支持</h3>
+            <p class="py-4">
+              <img src={img} alt="微信赞助码" />
             </p>
           </div>
         </dialog>

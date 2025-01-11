@@ -1,8 +1,8 @@
 import { JSX, createMemo } from 'solid-js';
-import Icon from './icon';
+import { Icon } from './icon';
 import { Link } from './article';
 
-export default function (
+export const Btn = function (
   p: Partial<{
     text: string;
     class: string;
@@ -11,19 +11,19 @@ export default function (
     img: string;
     onClick: (e: MouseEvent) => void;
     children: JSX.Element;
-  }>,
+  }>
 ) {
   const children = () => (
     <>
-      {p.icon && <Icon>{p.icon}</Icon>}
+      {p.icon && <Icon children={p.icon} />}
       {p.img && (
-        <div class='w-10 rounded-full'>
+        <div class="w-10 rounded-full">
           <img
-            referrerpolicy='no-referrer'
-            loading='lazy'
+            referrerpolicy="no-referrer"
+            loading="lazy"
             width={24}
             height={24}
-            class='pointer-events-none no-space'
+            class="pointer-events-none no-space"
             src={p.img}
           />
         </div>
@@ -37,8 +37,8 @@ export default function (
     children: children(),
   }));
   return p.path ? (
-    <Link path={p.path} {...sharedProps()}></Link>
+    <Link path={p.path} {...sharedProps()} />
   ) : (
-    <button {...sharedProps()}></button>
+    <button {...sharedProps()} />
   );
-}
+};

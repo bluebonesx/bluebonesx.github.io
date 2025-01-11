@@ -1,6 +1,6 @@
 import { For } from 'solid-js';
 
-export default function <T extends Record<string, unknown>>(p: {
+export const Table = function <T extends Record<string, unknown>>(p: {
   class?: string;
   items: T[];
 }) {
@@ -30,4 +30,4 @@ export default function <T extends Record<string, unknown>>(p: {
       </table>
     </div>
   );
-}
+};
