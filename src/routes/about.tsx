@@ -3,7 +3,7 @@ import { Index, createMemo } from 'solid-js';
 import { Article, H, Link, List } from '~/components/article';
 import { Btn } from '~/components/button';
 import { MultiLines } from '~/components/multi-lines';
-import { Nav } from '~/ts/enum';
+import { Links } from '~/ts/enum';
 import { useBreakpoint } from '~/ts/util';
 
 function MemberCard(
@@ -14,18 +14,18 @@ function MemberCard(
     link: string;
     bg: string[];
     content: string;
-  }>
+  }>,
 ) {
   return (
     <div class="card border-base-content/5 card-compact border-4 text-start">
       <div class="card-body">
         <div class="flex items-center gap-2">
           <Btn
+            type="link"
             path={p.link}
             icon={p.icon}
-            img={p.avatar}
             class="btn-circle avatar"
-          ></Btn>
+          />
           <div class="flex flex-col items-start">
             <b class="text-base-content font-bold">{p.name}</b>
             <p class="text-base-content/70 no-space text-xs">
@@ -93,7 +93,7 @@ export default function About() {
         如您所见，我们是一个年轻的团队。
         <br />
         我们需要您的
-        <A href={Nav['KnowUs:Join'].path}>加入</A>。
+        <A href={Links.join.path}>加入</A>。
       </p>
       <div
         class={[

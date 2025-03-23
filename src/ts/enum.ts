@@ -1,4 +1,5 @@
-import { mdiHeart, mdiQqchat } from '@mdi/js';
+import { mdiGithub, mdiHeart, mdiQqchat } from '@mdi/js';
+import { t } from './util';
 
 const unique = Symbol();
 type ItemData = Partial<ItemMeta<typeof unique, typeof unique>> &
@@ -10,7 +11,7 @@ type ItemMeta<K = string, V = number> = {
 };
 export type EnumMeta<
   V extends number[] = number[],
-  D extends Merge<ItemData, ItemMeta>[] = Merge<ItemData, ItemMeta>[]
+  D extends Merge<ItemData, ItemMeta>[] = Merge<ItemData, ItemMeta>[],
 > = {
   /**所有成员枚举 */ enums: V;
   /**所有成员 */ items: D;
@@ -37,102 +38,81 @@ export function toEnum<const T extends ItemKD[]>(...config: T) {
       acc.items.push(v);
       return acc;
     },
-    { enums: [], items: [] }
+    { enums: [], items: [] },
   ) as EnumObject &
     //@ts-ignore
     EnumMeta<EnumValue, UnionToTuple<EnumObject[EnumIndex]>>;
 }
 
-export const Nav = toEnum(
+export const Links = toEnum(
   [
-    'Product',
+    'projects',
     {
-      text: '产品',
-      path: 'product',
-      group: '',
+      get text() {
+        return t('Projects');
+      },
+      desc: '',
+      path: 'projects',
     },
   ],
   [
-    'Product:Recruit',
+    'about',
     {
-      text: 'Recruit',
-      path: 'https://essai.bluebones.fun',
-      desc: '线下实验招募平台',
-      group: '产品',
-    },
-  ],
-  [
-    'Product:ptbk',
-    {
-      text: 'ptbk',
-      path: 'https://github.com/bluebones-team/ptbk',
-      desc: 'PsychToolbox 开发框架',
-      group: '产品',
-    },
-  ],
-  [
-    'Product:wps-paper',
-    {
-      text: 'wps-paper',
-      path: 'https://github.com/bluebones-team/wps-paper',
-      desc: '辅助论文写作的WPS加载项',
-      group: '产品',
-    },
-  ],
-  [
-    'KnowUs:About',
-    {
-      text: '关于我们',
+      get text() {
+        return t('About');
+      },
+      desc: '',
       path: 'about',
-      desc: '我们是一个年轻的非营利性组织',
-      group: '认识我们',
     },
   ],
   [
-    'KnowUs:Join',
+    'join',
     {
-      text: '加入我们',
+      get text() {
+        return t('Join us');
+      },
+      desc: '',
       path: 'join',
-      desc: '和我们一起探索科研工作的未来形态',
-      group: '认识我们',
     },
   ],
   [
-    'KnowUs:Donate',
+    'donate',
     {
-      text: '捐助',
+      get text() {
+        return t('Donate');
+      },
+      desc: '',
       path: 'donate',
-      desc: '共同促进脑科学发展',
-      group: '认识我们',
       icon: mdiHeart,
     },
   ],
   [
-    'ContactUs:QQ',
+    'QQ',
     {
       text: 'QQ',
-      path: 'https://qm.qq.com/q/214gmxUVKw',
       desc: '',
-      group: '联系我们',
+      path: 'https://qm.qq.com/q/214gmxUVKw',
       icon: mdiQqchat,
     },
   ],
   [
-    'ContactUs:GitHub',
+    'GitHub',
     {
       text: 'GitHub',
-      path: 'https://github.com/bluebones-team',
       desc: '',
-      group: '联系我们',
+      path: 'https://github.com/bluebones-team',
+      icon: mdiGithub,
     },
   ],
   [
-    'ContactUs:AFDIAN',
+    'xiaohongshu',
     {
-      text: '爱发电',
-      path: 'https://afdian.com/a/bluebones',
+      get text() {
+        return t('xiaohongshu');
+      },
       desc: '',
-      group: '联系我们',
+      path: 'https://www.xiaohongshu.com/user/profile/6498e283000000001c02a845',
+      icon: 'https://www.xiaohongshu.com/favicon.ico',
     },
-  ]
+  ],
 );

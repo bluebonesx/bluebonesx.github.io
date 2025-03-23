@@ -35,12 +35,11 @@ export function List(p: {
     </Dynamic>
   );
 }
-export function Link(_p: {
+export function Link(p: {
+  path: string;
   class?: string;
-  path?: string;
   children?: JSX.Element;
 }) {
-  const p = mergeProps({ path: '404' }, _p);
   return (
     <A
       class={p.class}

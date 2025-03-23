@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+@plugin "daisyui" {
+  themes: night, nord --default;
+}
+@plugin "@tailwindcss/typography";
+
+@utility no-space {
+  @apply m-0!;
+  @apply p-0!;
+}

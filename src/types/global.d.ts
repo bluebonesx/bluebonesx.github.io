@@ -18,3 +18,9 @@ declare global {
   type LooseObject = { [key: string]: any };
   type ObjectIterator<T, R> = (v: T[keyof T], k: string, o: T) => R;
 }
+
+declare module 'solid-js' {
+  namespace JSX {
+    interface CustomEvents extends HTMLElementEventMap {}
+  }
+}

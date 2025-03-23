@@ -1,10 +1,15 @@
+import tailwindcss from '@tailwindcss/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
-import { fileURLToPath } from 'url';
 
 export default defineConfig({
-  plugins: [solidPlugin() /*, visualizer({ open: true }) */],
+  plugins: [
+    tailwindcss(),
+    solidPlugin(),
+    // visualizer({ open: true }),
+  ],
   resolve: {
     alias: {
       '~': fileURLToPath(new URL('./src', import.meta.url)),

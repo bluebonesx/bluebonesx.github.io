@@ -1,27 +1,31 @@
+import { translator } from '@solid-primitives/i18n';
 import {
   createEffect,
+  createResource,
   createSignal,
   onCleanup,
   onMount,
   Signal,
 } from 'solid-js';
+import { createStore } from 'solid-js/store';
+import en_dict from '~/i18n/en.json';
 
 export function each<T extends LooseObject>(
   obj: T,
-  fn: ObjectIterator<T, void>
+  fn: ObjectIterator<T, void>,
 ) {
   Object.keys(obj).forEach((key) => fn(obj[key], key, obj));
 }
 export function map<T extends LooseObject, R>(
   obj: T,
-  fn: ObjectIterator<T, R>
+  fn: ObjectIterator<T, R>,
 ) {
   return Object.keys(obj).map((key) => fn(obj[key], key, obj));
 }
 /**@example mapValues({a: 1, b: 2, c: 3}, (v) => v * 2) // {a: 2, b: 4, c: 6} */
 export function mapValues<T extends LooseObject, R>(
   obj: T,
-  fn: ObjectIterator<T, R>
+  fn: ObjectIterator<T, R>,
 ) {
   const result: LooseObject = {};
   each(obj, (v, k, o) => {
@@ -32,12 +36,12 @@ export function mapValues<T extends LooseObject, R>(
 /**@example groupBy([{a: 1}, {a: 2}, {a: 1}, {a: 3}], 'a') // {1: [{a: 1}, {a: 1}], 2: [{a: 2}], 3: [{a: 3}]} */
 export function groupBy<T extends LooseObject, K extends keyof T>(
   arr: T[],
-  key: K
+  key: K,
 ): { [P in T[K]]: Extract<T, { [Q in K]: P }>[] };
 /**@example groupBy([{a: 1}, {a: 2}, {a: 1}, {a: 3}], (e) => e.a) // {1: [{a: 1}, {a: 1}], 2: [{a: 2}], 3: [{a: 3}]} */
 export function groupBy<T extends LooseObject, K extends PropertyKey>(
   arr: T[],
-  fn: (e: T) => K
+  fn: (e: T) => K,
 ): Record<K, T[]>;
 export function groupBy(arr: any[], by: any) {
   const _by = typeof by === 'string' ? (e: any) => e[by] : by;
@@ -48,45 +52,24 @@ export function groupBy(arr: any[], by: any) {
   });
   return result;
 }
-export function mergeStyleProps(...ps: StyleProps[]): NormalizedStyleProps {
-  function normalize(p: StyleProps) {
-    const _p: NormalizedStyleProps = {};
-    if (p.class) {
-      _p.class = p.class;
-    }
-    if (p.classList) {
-      _p.class =
-        (_p.class ??= '') + map(p.classList, (v, k) => (v ? k : '')).join(' ');
-      delete p.classList;
-    }
-    if (typeof p.style === 'object') {
-      _p.style = map(p.style, (v, k) => `${k}:${v}`).join(';');
-    }
-    return _p;
-  }
-  const mergeStyle = ps.reduce((acc, p) => {
-    const { class: c, style: s } = normalize(p);
-    if (c) {
-      acc.class = (acc.class ?? '') + c + ' ';
-    }
-    if (s) {
-      acc.style = (acc.style ??= '') + s + ';';
-    }
-    return acc;
-  }, {} as NormalizedStyleProps);
-  return Object.assign({}, ...ps.concat(mergeStyle));
+export function hasOwn<T extends LooseObject, K extends PropertyKey>(
+  obj: T,
+  key: K,
+  //@ts-ignore
+): obj is Extract<T, { [Q in K]: T[K] }> {
+  return Object.prototype.hasOwnProperty.call(obj, key);
 }
 
 //hooks
 export function useEventListener<K extends keyof WindowEventMap>(
   el: Window,
   name: K,
-  listener: (e: WindowEventMap[K]) => void
+  listener: (e: WindowEventMap[K]) => void,
 ): void;
 export function useEventListener(
   el: EventTarget,
   name: string,
-  listener: <T extends Event>(e: T) => void
+  listener: <T extends Event>(e: T) => void,
 ) {
   import.meta.env.DEV && console.debug('事件监听', name);
   el.addEventListener(name, listener, true);
@@ -102,7 +85,7 @@ export function useMatchMedia(query: string) {
     setMatches(mql.matches);
     //@ts-ignore
     useEventListener(mql, 'change', (e: MediaQueryListEvent) =>
-      setMatches(e.matches)
+      setMatches(e.matches),
     );
   });
   return matches;
@@ -131,3 +114,29 @@ export function useLocalStorage<T>(key: string, defaultValue: T): Signal<T> {
   });
   return [value, setValue];
 }
+
+// store
+export const [store, setStore] = createStore<{ theme: string; locale: string }>(
+  { theme: 'nord', locale: 'en' },
+);
+createEffect(() => {
+  document.documentElement.lang = store.locale;
+});
+
+/**locale @see https://github.com/solidjs-community/solid-primitives/tree/main/packages/i18n */
+type Dict = typeof en_dict;
+const [dict] = createResource(
+  () => store.locale,
+  async (locale) => ({
+    ...en_dict,
+    ...((await import(`../i18n/${locale}.json`)).default as Dict),
+  }),
+);
+export const t = translator(dict);
+export const locales = map(
+  import.meta.glob('../i18n/*.json', {
+    eager: true,
+    import: '__meta',
+  }) as Record<string, Dict['__meta']>,
+  (v, k) => ({ ...v, locale: k.match(/([^/]+)\.json$/)?.[1] ?? k }),
+);

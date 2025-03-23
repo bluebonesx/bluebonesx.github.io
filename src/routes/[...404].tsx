@@ -1,61 +1,76 @@
 import { A } from '@solidjs/router';
 import { For } from 'solid-js';
-import { Nav } from '~/ts/enum';
+import { Actions } from '~/components/block';
+import { Btn } from '~/components/button';
+import { Links } from '~/ts/enum';
+import { t } from '~/ts/util';
 
-function Guide(p: { text: string; path: string; desc: string }) {
-  return (
-    <li class="my-2">
-      <A class="btn btn-lg px-4 mr-2 h-auto min-h-10" href={p.path}>
-        {p.text}
-      </A>
-      {p.desc}
-    </li>
-  );
-}
 export default function NotFound() {
   return (
-    <div class="hero h-full">
+    <div class="hero h-[calc(100vh-4rem)]">
       <div class="hero-content flex-col items-start">
         <div class="max-w-md">
           <h1 class="text-5xl font-bold">Σ(っ °Д °;)っ: 404</h1>
           <p class="py-6">
-            这个页面还没写好...
+            {t("This page haven't been written yet...")}
             <br />
-            不过，您可以通过
-            <A href={Nav['ContactUs:QQ'].path} class="link">
-              加入 Bluebones 社区群
+            {t('But you can track the newest infomation by ')}
+            <br />
+            <A href={Links.QQ.path} class="link">
+              {t('JOINING COMMUNITY GROUP')}
             </A>
-            跟踪最新动态
           </p>
-          <a
-            class="btn btn-sm btn-outline"
-            onClick={() => window.history.back()}
-          >
-            上一页
-          </a>
+          <Actions
+            items={[
+              {
+                text: t('Previous'),
+                class: 'btn-sm',
+                //TODO: use router.back()
+                onClick: () => window.history.back(),
+              },
+              {
+                type: 'link',
+                text: t('Home'),
+                class: 'btn-sm btn-outline',
+                path: '/',
+              },
+            ]}
+          />
         </div>
         <div class="divider divider-neutral"></div>
         <ol>
           <For
             each={[
               {
-                text: '了解',
-                path: '/about',
-                desc: '一个学生主导的非营利性团体',
+                text: t('Projects'),
+                path: Links.projects.path,
+                desc: t('make your work more efficient'),
               },
               {
-                text: '产品',
-                path: '/product',
-                desc: '让您更高效地工作',
+                text: t('About'),
+                path: Links.about.path,
+                desc: t('a non-profit team originally led by students'),
               },
               {
-                text: '捐助',
-                path: '/donate',
-                desc: '以推动脑科学科研工作流的改革',
+                text: t('Donate'),
+                path: Links.donate.path,
+                desc: t(
+                  'to promote the reform of brain science research workflow',
+                ),
               },
             ]}
           >
-            {Guide}
+            {(e) => (
+              <li>
+                <Btn
+                  type="link"
+                  path={e.path}
+                  text={e.text}
+                  class="btn-lg h-10"
+                />
+                {e.desc}
+              </li>
+            )}
           </For>
         </ol>
       </div>
