@@ -107,7 +107,7 @@ function App(p: RouteSectionProps) {
             type="link"
             path="/"
             class="font-title text-base-content text-lg md:text-2xl"
-            text={t('Bluebones')}
+            text={t('logo:bluebones')}
           />
           <NavBtns />
         </div>
@@ -124,7 +124,12 @@ function App(p: RouteSectionProps) {
           />
           <Btn type="swap" class="btn-square">
             {/*TODO: use store.theme to replace theme controller */}
-            <input type="checkbox" class="theme-controller" value="night" />
+            <input
+              type="checkbox"
+              class="theme-controller"
+              value="dark"
+              checked={import.meta.env.DEV ? true : store.theme === 'dark'}
+            />
             <Icon class="swap-on" children={mdiWeatherSunny} />
             <Icon class="swap-off" children={mdiWeatherNight} />
           </Btn>
@@ -156,7 +161,7 @@ function App(p: RouteSectionProps) {
         <aside>
           <Icon
             class="invert brightness-0"
-            size={64}
+            size={48}
             children="/icon/favicon.ico"
           />
           <p>©{new Date().getFullYear()} Bluebones Team</p>

@@ -49,7 +49,7 @@ export const Links = toEnum(
     'projects',
     {
       get text() {
-        return t('Projects');
+        return t('btn:projects');
       },
       desc: '',
       path: 'projects',
@@ -59,7 +59,7 @@ export const Links = toEnum(
     'about',
     {
       get text() {
-        return t('About');
+        return t('btn:about');
       },
       desc: '',
       path: 'about',
@@ -69,7 +69,7 @@ export const Links = toEnum(
     'join',
     {
       get text() {
-        return t('Join us');
+        return t('join.title');
       },
       desc: '',
       path: 'join',
@@ -79,7 +79,7 @@ export const Links = toEnum(
     'donate',
     {
       get text() {
-        return t('Donate');
+        return t('btn:donate');
       },
       desc: '',
       path: 'donate',
@@ -108,7 +108,7 @@ export const Links = toEnum(
     'xiaohongshu',
     {
       get text() {
-        return t('xiaohongshu');
+        return t('logo:xiaohongshu');
       },
       desc: '',
       path: 'https://www.xiaohongshu.com/user/profile/6498e283000000001c02a845',

@@ -2,6 +2,7 @@ import { A } from '@solidjs/router';
 import { For } from 'solid-js';
 import { Actions } from '~/components/block';
 import { Btn } from '~/components/button';
+import { MultiLines } from '~/components/multi-lines';
 import { Links } from '~/ts/enum';
 import { t } from '~/ts/util';
 
@@ -12,25 +13,22 @@ export default function NotFound() {
         <div class="max-w-md">
           <h1 class="text-5xl font-bold">Σ(っ °Д °;)っ: 404</h1>
           <p class="py-6">
-            {t("This page haven't been written yet...")}
-            <br />
-            {t('But you can track the newest infomation by ')}
-            <br />
+            <MultiLines text={t('404.text')} />
             <A href={Links.QQ.path} class="link">
-              {t('JOINING COMMUNITY GROUP')}
+              {t('btn:qq-group')}
             </A>
           </p>
           <Actions
             items={[
               {
-                text: t('Previous'),
+                text: t('btn:previous'),
                 class: 'btn-sm',
                 //TODO: use router.back()
                 onClick: () => window.history.back(),
               },
               {
                 type: 'link',
-                text: t('Home'),
+                text: t('btn:home'),
                 class: 'btn-sm btn-outline',
                 path: '/',
               },
@@ -42,21 +40,19 @@ export default function NotFound() {
           <For
             each={[
               {
-                text: t('Projects'),
+                text: t('btn:projects'),
                 path: Links.projects.path,
-                desc: t('make your work more efficient'),
+                desc: t('404.link:projects.text'),
               },
               {
-                text: t('About'),
+                text: t('btn:about'),
                 path: Links.about.path,
-                desc: t('a non-profit team originally led by students'),
+                desc: t('404.link:about.text'),
               },
               {
-                text: t('Donate'),
+                text: t('btn:donate'),
                 path: Links.donate.path,
-                desc: t(
-                  'to promote the reform of brain science research workflow',
-                ),
+                desc: t('404.link:donate.text'),
               },
             ]}
           >

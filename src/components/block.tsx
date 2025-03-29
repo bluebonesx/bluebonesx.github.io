@@ -34,7 +34,7 @@ export function Block(p: ParentProps<{ class?: string }>) {
     <div
       class={[
         'h-screen first:h-[calc(100vh-4rem)]',
-        'py-12 px-5 md:px-20',
+        'py-12 px-5 sm:px-20',
         'flex flex-col justify-center',
         p.class ?? '',
       ].join(' ')}

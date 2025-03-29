@@ -17,7 +17,11 @@ export const Icon = function (p: {
   return /^(http|\/)/.test(props.children) ? (
     <img
       src={props.children}
-      class={twMerge(`w-${props.size / 4} h-${props.size / 4}`, props.class)}
+      class={props.class}
+      style={{
+        width: `calc(var(--spacing) * ${props.size / 4})`,
+        height: `calc(var(--spacing) * ${props.size / 4})`,
+      }}
     />
   ) : (
     <svg

@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @plugin "daisyui" {
-  themes: night, nord --default;
+  themes: dark, nord --default;
 }
 @plugin "@tailwindcss/typography";
 

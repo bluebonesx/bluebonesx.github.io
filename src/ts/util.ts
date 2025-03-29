@@ -8,7 +8,7 @@ import {
   Signal,
 } from 'solid-js';
 import { createStore } from 'solid-js/store';
-import en_dict from '~/i18n/en.json';
+import zh_dict from '~/i18n/zh.json';
 
 export function each<T extends LooseObject>(
   obj: T,
@@ -117,18 +117,18 @@ export function useLocalStorage<T>(key: string, defaultValue: T): Signal<T> {
 
 // store
 export const [store, setStore] = createStore<{ theme: string; locale: string }>(
-  { theme: 'nord', locale: 'en' },
+  { theme: 'nord', locale: 'zh' },
 );
 createEffect(() => {
   document.documentElement.lang = store.locale;
 });
 
 /**locale @see https://github.com/solidjs-community/solid-primitives/tree/main/packages/i18n */
-type Dict = typeof en_dict;
+type Dict = typeof zh_dict;
 const [dict] = createResource(
   () => store.locale,
   async (locale) => ({
-    ...en_dict,
+    ...zh_dict,
     ...((await import(`../i18n/${locale}.json`)).default as Dict),
   }),
 );

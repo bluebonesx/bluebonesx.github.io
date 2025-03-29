@@ -30,7 +30,7 @@ getRepos().then(setRepos, console.error);
 export const navs = [
   {
     get text() {
-      return t('Projects');
+      return t('btn:projects');
     },
     get items() {
       return repos();
@@ -38,13 +38,13 @@ export const navs = [
   },
   {
     get text() {
-      return t('About');
+      return t('btn:about');
     },
     items: [Links.about, Links.join, Links.donate],
   },
   {
     get text() {
-      return t('Contact');
+      return t('btn:contact');
     },
     items: [Links.QQ, Links.GitHub, Links.xiaohongshu],
   },

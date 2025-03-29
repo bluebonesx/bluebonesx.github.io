@@ -2,30 +2,38 @@
   "__meta": {
     "name": "简体中文"
   },
-  "Bluebones": "蓝骨头",
-  "Projects": "项目",
-  "About": "关于我们",
-  "Contact": "联系我们",
-  "Donate": "捐助",
-  "xiaohongshu": "小红书",
+  "logo:bluebones": "蓝骨头",
+  "logo:xiaohongshu": "小红书",
+  "logo:wechat": "微信",
+  "logo:afdian": "爱发电",
 
-  "Previous": "上一页",
-  "Home": "主页",
-  "This page haven't been written yet...": "这个页面还没写好...",
-  "But you can track the newest infomation by ": "如果您想跟踪最新的信息，请",
-  "JOINING COMMUNITY GROUP": "加入社区群",
-  "make your work more efficient": "使您的工作更高效",
-  "a non-profit team originally led by students": "一个最初由学生主导的非盈利团体",
-  "to promote the reform of brain science research workflow": "以促进脑科学研究工作流的改革",
+  "btn:previous": "上一页",
+  "btn:home": "主页",
+  "btn:projects": "项目",
+  "btn:about": "关于我们",
+  "btn:contact": "联系我们",
+  "btn:donate": "捐助",
+  "btn:qq-group": "加入社区群",
 
-  "Donate to us": "向我们捐助",
-  "WeChat": "微信",
-  "AFDIAN": "爱发电",
+  "404.text": "这个页面还没写好...\n如果您想跟踪最新动态，请",
+  "404.link:projects.text": "让科研工作更高效",
+  "404.link:about.text": "一个最初由学生主导的非盈利团体",
+  "404.link:donate.text": "以促进脑科学研究工作流的改革",
 
-  "Join us": "加入我们",
-  "Job description": "工作描述",
-  "Full-stack developer": "全栈开发",
-  "From requirement analysis to operations management, this project is yours!": "从需求分析到运维管理，这个项目你说了算！",
-  "Knowledge sharer": "知识分享",
-  "Writing articles that describe the most specialized knowledge in the simplest of terms": "编写文章，用最简单的话语描述最专业的知识"
+  "donate.title": "向我们捐助",
+  "donate.text": "蓝骨头正在推动脑科学科研工作流的改革，以此促进脑科学的发展。\n我们是非营利性组织，接受捐助是我们当前唯一的收入来源。\n我们承诺，这些钱将全部用于：服务器、域名、推广。",
+
+  "join.title": "加入我们",
+  "join.text": "蓝骨头还处于初期阶段，有限的成员数限制着产品开发速度，我们需要有共同理念的伙伴加入。\n我们要打造一套高效、协作、开放的科研产品生态，让科研工作者把时间更多地花在思考上。\n为了实现这个目标，需要我们年轻一代的共同努力。",
+  "join.jd.title": "工作描述",
+  "join.jd.job-1.title": "全栈开发",
+  "join.jd.job-1.text": "从需求分析到运维管理，这个项目你说了算！",
+  "join.jd.job-2.title": "知识分享",
+  "join.jd.job-2.text": "编写文章，用最简单的话语描述最专业的知识。",
+
+  "about.title": "从个人爱好到共同目标",
+  "about.member.title": "贡献者",
+  "about.member.text": "cubx'109600351'https://cubxx.github.io/blog'上海师范大学-应用心理-本科\n中科院心理所科研助理'蓝骨头负责人。程序开发、脑科学、平面动画同时进行中...,gtouck'128892816'https://github.com/gtouck'上海海事大学-计算机-本科\n全栈开发'",
+
+  "projects.title": "项目"
 }
