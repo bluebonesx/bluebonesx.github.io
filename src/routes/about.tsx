@@ -1,9 +1,7 @@
-import { A } from '@solidjs/router';
-import { For, Index, createMemo } from 'solid-js';
-import { Article, H, Link, List } from '~/components/article';
+import { For, createMemo } from 'solid-js';
+import { Article, H } from '~/components/article';
 import { Btn } from '~/components/button';
 import { MultiLines } from '~/components/multi-lines';
-import { Links } from '~/ts/enum';
 import { t, useBreakpoint } from '~/ts/util';
 
 export default function About() {

@@ -56,14 +56,14 @@ function NavBtns() {
             <For each={e.items}>
               {(e) => (
                 <li>
-                  <Link path={e.path}>
-                    {!e.desc && hasOwn(e, 'icon') && (
-                      <Icon class="mr-2" children={e.icon} />
-                    )}
+                  <Link class="justify-between" path={e.path}>
                     <section>
                       <h2 class="font-bold">{e.text}</h2>
                       <p>{e.desc}</p>
                     </section>
+                    {!e.desc && hasOwn(e, 'icon') && (
+                      <Icon class="mr-2" children={e.icon} />
+                    )}
                   </Link>
                 </li>
               )}

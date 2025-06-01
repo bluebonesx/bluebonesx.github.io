@@ -1,5 +1,6 @@
 import { Actions, Block, Head, Para } from '~/components/block';
 import { Links } from '~/ts/enum';
+import { t } from '~/ts/util';
 
 export default function Home() {
   return (
@@ -7,60 +8,62 @@ export default function Home() {
       <div>
         <Block>
           <Head>
-            脑科学的 <br />
+            心理学的 <br />
             <span class="bg-clip-text [text-fill-color:transparent]">
               下一代 <br />
-              科研工作流
+              科研工具箱
             </span>
           </Head>
           <Para>
-            提高科研工作效率：一站式科研工具与平台，集成文献管理、数据收集、数据分析与文字撰写，打造高效、协作、开放的科研产品生态。
+            蓝骨头属于 Open Science 项目，通过<b>开源工具</b>减少 dirty
+            work，把时间留给创造性工作。
             <br />
-            已经厌恶了繁琐的科研工作？看看蓝骨头还能做些什么……
+            从文献收集到撰写文稿，我们关注科研工作的全流程。
           </Para>
           <Actions
             items={[
-              { ...Links.projects, children: '系列产品' },
-              { ...Links.QQ, children: '加入社区群' },
-            ].map((e) => ({
-              ...e,
-              type: 'link',
-            }))}
+              Links.projects,
+              { ...Links.QQ, children: t('btn:qq-group') },
+            ].map((e) => ({ ...e, type: 'link' }))}
           />
           <br class="h-8"></br>
         </Block>
         <Block class="bg-primary text-primary-content">
-          <Head>从 idea 到 paper 有多长</Head>
+          <Head>让运行实验程序更简单</Head>
           <Para>
-            收集文献、实验设计、数据收集、数据分析、制作图表、文字撰写、内容排版...
+            我们推荐基于 Web 的实验方案，实现真正的“一次编写，到处运行”。
             <br />
-            我们将用一套工作流解决一切重复劳动，让您专注于创造性事业中。
+            比起系统依赖性较强的 PsychToolbox 和 PsychoPy，基于 Web
+            的实验程序几乎没有版本兼容问题。
+            <br />
+            只需要一个浏览器，就能运行任何实验程序。
           </Para>
         </Block>
         <Block>
-          <Head>趋近于 0 的学习成本</Head>
+          <Head>搭建被试库，集中管理实验数据</Head>
           <Para>
-            为了让各领域的用户都能快速上手蓝骨头产品，我们从设计上就考虑零经验的初学者。
+            被试库可以记录被试人口学信息、其他主试对被试的评价、被试以往参加的实验及数据等等。
             <br />
-            比起那些硬核且专业的软件，我们的优势是简单且高效。
+            通过被试库提供的信息，主试可以更好判断该被试是否适合特定实验。
+            <br />
+            被试信息和实验数据的深度绑定，也能为后续数据处理提供更多可能。
           </Para>
         </Block>
         <Block class="bg-secondary text-secondary-content">
-          <Head>开放的产品生态</Head>
+          <Head>抛弃闭源，拥抱开源</Head>
           <Para>
-            蓝骨头是非营利性组织，我们所作的一切是为了学科发展，而不是利润。
-            <br />
-            我们将把全部产品开源，让更多人参与到产品的开发中。 我们还将提供 API
-            文档，让您可以自由地开发插件。
+            为了避免不必要的版权纠纷或支付高昂的服务费用，我们推荐用开源替代闭源。
+            <br />用 Python 替代 MATLAB，拥抱成熟的环境管理 uv 和源码管理 git。
+            <br />用 Typst 替代 Word，使用更稳定的排版系统和版本管理 git。
+            <br />用 Wrap 替代 PowerPoint，让 AI 辅助 PPT 制作。
           </Para>
         </Block>
         <Block>
-          <Head>加入，为了共同理念</Head>
+          <Head>还有……</Head>
           <Para>
-            蓝骨头团队成员来自不同的领域，我们希望能够找到更多志同道合的伙伴。
+            蓝骨头项目还处于早期阶段，目前所有开发工作仅由一人完成，所以相关进度较为缓慢。
             <br />
-            作为一个年轻的组织，还需要得到各方的支持，
-            <b>你愿意支持我们吗？</b>
+            我们需要各方的支持，<b>你愿意支持我们吗？</b>
           </Para>
           <Actions
             items={[Links.about, Links.donate].map((e) => ({

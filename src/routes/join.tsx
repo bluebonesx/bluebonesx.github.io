@@ -12,7 +12,7 @@ export default function Donate() {
           <MultiLines text={t('join.text')} />
         </Para>
         <Para>
-          {t('join.jd.title')}
+          <h2>{t('join.jd.title')}</h2>
           <ol class="pt-2">
             <For
               each={[
