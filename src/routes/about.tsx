@@ -38,10 +38,14 @@ export default function () {
                     <div class="text-base-content font-bold text-sm">
                       {p.name}
                     </div>
-                    <div class="text-base-content/70 text-xs">{p.bg}</div>
+                    <div class="text-base-content/70 text-xs whitespace-pre-wrap">
+                      {p.bg}
+                    </div>
                   </div>
                 </div>
-                <div class="text-base-content text-xs">{p.content}</div>
+                <div class="text-base-content text-xs whitespace-pre-wrap">
+                  {p.content}
+                </div>
               </div>
             </div>
           )}

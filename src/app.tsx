@@ -125,11 +125,11 @@ function App(p: RouteSectionProps) {
             <input
               type="checkbox"
               class="theme-controller"
-              value="night"
-              checked={import.meta.env.DEV ? true : store.theme === 'night'}
+              value="nord"
+              checked={store.theme === 'nord'}
             />
-            <Icon class="swap-on" children={mdiWeatherSunny} />
-            <Icon class="swap-off" children={mdiWeatherNight} />
+            <Icon class="swap-off" children={mdiWeatherSunny} />
+            <Icon class="swap-on" children={mdiWeatherNight} />
           </Btn>
           <Btn
             type="dropdown"

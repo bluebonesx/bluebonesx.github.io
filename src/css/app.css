@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @plugin "daisyui" {
-  themes: night, nord --default;
+  themes: night --default, nord;
 }
 
 /* override daisyui */
@@ -16,7 +16,7 @@
   @apply py-12;
   @apply px-5;
   @apply sm:px-20;
-  @apply 2xl:mx-60;
+  @apply 2xl:px-60;
 
   * {
     @apply whitespace-pre-wrap;

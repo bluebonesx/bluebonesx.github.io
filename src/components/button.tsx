@@ -86,7 +86,7 @@ export function Btn<
 }
 export function BtnGroup(p: { items: Props<typeof Btn>[] }) {
   return (
-    <div class="flex justify-center md:justify-start gap-3">
+    <div class="flex flex-wrap justify-center md:justify-start gap-3">
       <For each={p.items}>{(e) => <Btn {...e} />}</For>
     </div>
   );
