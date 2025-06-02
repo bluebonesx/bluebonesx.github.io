@@ -1,29 +1,26 @@
 import { A } from '@solidjs/router';
 import { For } from 'solid-js';
-import { Actions } from '~/components/block';
-import { Btn } from '~/components/button';
-import { MultiLines } from '~/components/multi-lines';
+import { Btn, BtnGroup } from '~/components/button';
 import { Links } from '~/ts/enum';
 import { t } from '~/ts/util';
 
 export default function NotFound() {
   return (
-    <div class="hero h-[calc(100vh-4rem)]">
+    <div class="hero h-screen">
       <div class="hero-content flex-col items-start">
         <div class="max-w-md">
           <h1 class="text-5xl font-bold">Σ(っ °Д °;)っ: 404</h1>
           <p class="py-6">
-            <MultiLines text={t('404.text')} />
+            {t('404.text')}
             <A href={Links.QQ.path} class="link">
               {t('btn:qq-group')}
             </A>
           </p>
-          <Actions
+          <BtnGroup
             items={[
               {
                 text: t('btn:previous'),
                 class: 'btn-sm',
-                //TODO: use router.back()
                 onClick: () => window.history.back(),
               },
               {

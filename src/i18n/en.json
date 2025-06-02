@@ -29,5 +29,26 @@
   "join.jd.job-1.title": "Full-stack developer",
   "join.jd.job-1.text": "From requirement analysis to operations management, this project is yours!",
   "join.jd.job-2.title": "Knowledge sharer",
-  "join.jd.job-2.text": "Writing articles that describe the most specialized knowledge in the simplest of terms"
+  "join.jd.job-2.text": "Writing articles that describe the most specialized knowledge in the simplest of terms",
+
+  "index.block-1.title-1": "Psychological\n",
+  "index.block-1.title-2": "Next-gen\nResearch Toolbox",
+  "index.block-1.text-1": "The Bluebones is an Open Science project, which provides",
+  "index.block-1.text-2": "Open-Source tools",
+  "index.block-1.text-3": "to reduce dirty work and leave time for creativity.\nFrom paper collection to manuscript writing, we focus on the entire process of scientific research.",
+  "index.block-2.title": "Make running experimental programs easier",
+  "index.block-2.text": "We recommend web-based experimental solutions to achieve true 'write once, run anywhere'. \nCompared to system-dependent tools like PsychToolbox and PsychoPy, web-based experimental programs have virtually no version compatibility issues. \nAll you need is a browser to run any experimental program.",
+  "index.block-3.title": "Build a participant database to centrally manage experimental data",
+  "index.block-3.text": "The participant database can record participant demographic information, other experimenters’ evaluations of participants, previous experiments participants have participated in, and related data. \nUsing the information provided by the participant database, experimenters can better determine whether a participant is suitable for a specific experiment. \nThe deep integration of participant information and experimental data also opens up more possibilities for subsequent data processing.",
+  "index.block-4.title": "Abandon Closed-Source, Embrace Open-Source",
+  "index.block-4.text-1": "To avoid unnecessary copyright disputes or paying high service fees, we recommend using open-source alternatives to closed-source software. \nUse Python instead of MATLAB, embracing a mature environment management system",
+  "index.block-4.text-2": "and source code management with Git.",
+  "index.block-4.text-3": "\nUse",
+  "index.block-4.text-4": "instead of Word, utilizing a more stable typesetting system and version control with Git.",
+  "index.block-4.text-5": "instead of PowerPoint, let AI assist in PPT creation.",
+  "index.block-5.title": "And more...",
+  "index.block-5.text-1": "The Bluebones project is still in its early stages, with all development currently handled by a single person, so progress is relatively slow. \nWe need support from all sides.",
+  "index.block-5.text-2": "Would you like to support us?",
+
+  "projects.title": "Projects"
 }

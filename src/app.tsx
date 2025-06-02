@@ -12,15 +12,14 @@ import {
   useLocation,
 } from '@solidjs/router';
 import { createEffect, For, lazy, Suspense } from 'solid-js';
-import { Link } from './components/article';
-import { Btn } from './components/button';
+import { Btn, Link } from './components/button';
 import { Icon } from './components/icon';
 import { Links } from './ts/enum';
 import { hasOwn, locales, setStore, store, t } from './ts/util';
 import { map } from './ts/util';
 import { navs } from './ts/nav';
 
-function NavToggler() {
+function MiniNav() {
   return (
     <Btn
       type="dropdown"
@@ -36,7 +35,11 @@ function NavToggler() {
               <For each={e.items}>
                 {(e) => (
                   <li>
-                    <Link path={e.path}>{e.text}</Link>
+                    <Link
+                      class="no-underline"
+                      path={e.path}
+                      children={e.text}
+                    />
                   </li>
                 )}
               </For>
@@ -47,7 +50,7 @@ function NavToggler() {
     </Btn>
   );
 }
-function NavBtns() {
+function TopNav() {
   return (
     <div class="hidden md:flex">
       <For each={navs}>
@@ -56,7 +59,7 @@ function NavBtns() {
             <For each={e.items}>
               {(e) => (
                 <li>
-                  <Link class="justify-between" path={e.path}>
+                  <Link class="no-underline justify-between" path={e.path}>
                     <section>
                       <h2 class="font-bold">{e.text}</h2>
                       <p>{e.desc}</p>
@@ -74,18 +77,14 @@ function NavBtns() {
     </div>
   );
 }
-function NavLinks() {
+function FooterNav() {
   return (
     <For each={navs}>
       {(e) => (
-        <nav>
+        <nav class="">
           <h6 class="footer-title">{e.text}</h6>
           <For each={e.items}>
-            {(e) => (
-              <A class="link link-hover" href={e.path}>
-                {e.text}
-              </A>
-            )}
+            {(e) => <Link class="link-hover" path={e.path} children={e.text} />}
           </For>
         </nav>
       )}
@@ -100,16 +99,16 @@ function App(p: RouteSectionProps) {
   });
   return (
     <div class="flex flex-col h-screen">
-      <nav class="navbar shadow-md">
+      <nav class="navbar absolute z-1">
         <div class="navbar-start">
-          <NavToggler />
+          <MiniNav />
           <Btn
             type="link"
             path="/"
-            class="font-title text-base-content text-lg md:text-2xl"
+            class="font-title text-lg md:text-2xl"
             text={t('logo:bluebones')}
           />
-          <NavBtns />
+          <TopNav />
         </div>
         <div class="navbar-end">
           <Btn type="link" path={Links.donate.path}>
@@ -123,12 +122,11 @@ function App(p: RouteSectionProps) {
             icon={Links.GitHub.icon}
           />
           <Btn type="swap" class="btn-square">
-            {/*TODO: use store.theme to replace theme controller */}
             <input
               type="checkbox"
               class="theme-controller"
-              value="dark"
-              checked={import.meta.env.DEV ? true : store.theme === 'dark'}
+              value="night"
+              checked={import.meta.env.DEV ? true : store.theme === 'night'}
             />
             <Icon class="swap-on" children={mdiWeatherSunny} />
             <Icon class="swap-off" children={mdiWeatherNight} />
@@ -157,19 +155,16 @@ function App(p: RouteSectionProps) {
       <main class="flex-1">
         <Suspense fallback={<p>Loading...</p>} children={p.children} />
       </main>
-      <footer class="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
+      <footer class="footer footer-horizontal sm:footer-vertical footer-center bg-neutral text-neutral-content p-10">
+        <FooterNav />
         <aside>
           <Icon
             class="invert brightness-0"
             size={48}
             children="/icon/favicon.ico"
           />
-          <p>©{new Date().getFullYear()} Bluebones Team</p>
-          <a href="http://beian.miit.gov.cn/" target="_blank">
-            赣ICP备2024021771号
-          </a>
+          <p>© {new Date().getFullYear()} Bluebones Team</p>
         </aside>
-        <NavLinks />
       </footer>
     </div>
   );
@@ -209,5 +204,5 @@ import.meta.env.DEV
          *=+++++%
 `,
       'color:#03a9f4;',
-      `\n都来这了，不考虑加入我们吗？ ${window.location.origin}/join`,
+      `\n都来这了，不考虑加入吗？ ${window.location.origin}/join`,
     );

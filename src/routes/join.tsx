@@ -1,40 +1,46 @@
 import { For } from 'solid-js';
-import { Block, Head, Para } from '~/components/block';
-import { MultiLines } from '~/components/multi-lines';
+import { BtnGroup } from '~/components/button';
+import { Links } from '~/ts/enum';
 import { t } from '~/ts/util';
 
-export default function Donate() {
+export default function () {
   return (
-    <div>
-      <Block class="2xl:mx-60">
-        <Head>{t('join.title')}</Head>
-        <Para>
-          <MultiLines text={t('join.text')} />
-        </Para>
-        <Para>
-          <h2>{t('join.jd.title')}</h2>
-          <ol class="pt-2">
-            <For
-              each={[
-                {
-                  text: t('join.jd.job-1.title'),
-                  desc: t('join.jd.job-1.text'),
-                },
-                {
-                  text: t('join.jd.job-2.title'),
-                  desc: t('join.jd.job-2.text'),
-                },
-              ]}
-            >
-              {(e) => (
-                <li class="pt-2">
-                  <strong>{e.text}</strong>: {e.desc}
-                </li>
-              )}
-            </For>
-          </ol>
-        </Para>
-      </Block>
+    <div class="hero-content">
+      <h1>{t('join.title')}</h1>
+      <p>{t('join.text')}</p>
+      <div>
+        <h2 class="font-bold text-xl">{t('join.jd.title')}</h2>
+        <ol class="pt-2">
+          <For
+            each={[
+              {
+                text: t('join.jd.job-1.title'),
+                desc: t('join.jd.job-1.text'),
+              },
+              {
+                text: t('join.jd.job-2.title'),
+                desc: t('join.jd.job-2.text'),
+              },
+            ]}
+          >
+            {(e) => (
+              <li class="pt-2">
+                <b>{e.text}</b>: {e.desc}
+              </li>
+            )}
+          </For>
+        </ol>
+      </div>
+      <BtnGroup
+        items={[
+          {
+            type: 'link',
+            ...Links.QQ,
+            text: t('btn:qq-group'),
+            class: 'bg-secondary text-secondary-content',
+          },
+        ]}
+      />
     </div>
   );
 }

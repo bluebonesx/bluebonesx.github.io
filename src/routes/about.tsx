@@ -1,17 +1,15 @@
 import { For, createMemo } from 'solid-js';
-import { Article, H } from '~/components/article';
 import { Btn } from '~/components/button';
-import { MultiLines } from '~/components/multi-lines';
 import { t, useBreakpoint } from '~/ts/util';
 
-export default function About() {
+export default function () {
   const { md } = useBreakpoint();
   const size = createMemo(() => (md() ? 50 : 100));
   const members = createMemo(() =>
     t('about.member.text')!
-      .split(',')
+      .split('||')
       .map((mbr) => {
-        const [name, ghID, link, bg, content] = mbr.split("'");
+        const [name, ghID, link, bg, content] = mbr.split('|');
         return {
           name,
           avatar: `https://avatars.githubusercontent.com/u/${ghID}?v=4&size=${size()}`,
@@ -23,12 +21,12 @@ export default function About() {
   );
 
   return (
-    <Article>
-      <H level={2}>{t('about.member.title')}</H>
-      <div class="mx-auto gap-6 max-w-5xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <article class="min-h-screen">
+      <h2>{t('about.member.title')}</h2>
+      <div class="mx-auto gap-6 flex flex-wrap justify-center">
         <For each={members()}>
           {(p) => (
-            <div class="card card-sm bg-base-200 text-start">
+            <div class="card card-sm bg-base-200 text-start w-max">
               <div class="card-body gap-4">
                 <div class="flex items-center gap-3">
                   <Btn type="link" path={p.link} class="btn-circle avatar">
@@ -40,9 +38,7 @@ export default function About() {
                     <div class="text-base-content font-bold text-sm">
                       {p.name}
                     </div>
-                    <div class="text-base-content/70 text-xs">
-                      <MultiLines text={p.bg} />
-                    </div>
+                    <div class="text-base-content/70 text-xs">{p.bg}</div>
                   </div>
                 </div>
                 <div class="text-base-content text-xs">{p.content}</div>
@@ -51,6 +47,6 @@ export default function About() {
           )}
         </For>
       </div>
-    </Article>
+    </article>
   );
 }
