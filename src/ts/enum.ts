@@ -100,7 +100,7 @@ export const Links = toEnum(
     {
       text: 'GitHub',
       desc: '',
-      path: 'https://github.com/bluebones-team',
+      path: 'https://github.com/bluebonesx',
       icon: mdiGithub,
     },
   ],

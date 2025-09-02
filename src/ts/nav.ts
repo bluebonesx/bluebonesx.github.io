@@ -11,7 +11,7 @@ async function getRepos() {
       }))
     : (
         (await (
-          await fetch('https://api.github.com/orgs/bluebones-team/repos')
+          await fetch('https://api.github.com/orgs/bluebonesx/repos')
         ).json()) as any[]
       )
         .filter((e) => e.description && !e.private)
